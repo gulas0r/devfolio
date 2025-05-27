@@ -87,6 +87,7 @@ export const useTranslations = () => {
 
   useEffect(() => {
     localStorage.setItem('preferred-language', language);
+    document.documentElement.lang = language;
   }, [language]);
 
   const t = (key: string): string => {
