@@ -1,18 +1,38 @@
 
 import { useTranslations } from '@/hooks/useTranslations';
-import { Github, Twitter, Linkedin, ExternalLink, User, Code2, Sparkles } from 'lucide-react';
+import { Github, Twitter, Linkedin, User, Code2, Sparkles, Rocket } from 'lucide-react';
+import { useState, useEffect } from 'react';
 
 const Hero = () => {
-  const { t } = useTranslations();
+  const { t, config } = useTranslations();
+  const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
+
+  useEffect(() => {
+    const handleMouseMove = (e: MouseEvent) => {
+      setMousePosition({ x: e.clientX, y: e.clientY });
+    };
+
+    window.addEventListener('mousemove', handleMouseMove);
+    return () => window.removeEventListener('mousemove', handleMouseMove);
+  }, []);
 
   return (
-    <section id="hero" className="px-4 sm:px-8 py-16 sm:py-24 pt-24 sm:pt-32 min-h-screen flex items-center">
+    <section id="hero" className="px-4 sm:px-8 py-16 sm:py-24 pt-24 sm:pt-32 min-h-screen flex items-center relative overflow-hidden">
+      {/* Animated Background */}
+      <div 
+        className="absolute inset-0 opacity-10"
+        style={{
+          background: `radial-gradient(circle at ${mousePosition.x}px ${mousePosition.y}px, rgba(59, 130, 246, 0.3) 0%, transparent 50%)`
+        }}
+      />
+      
       <div className="w-full max-w-7xl mx-auto">
         <div className="flex flex-col lg:flex-row justify-between items-center gap-12 lg:gap-16">
           <div className="flex-1 text-center lg:text-left">
             <div className="flex items-center justify-center lg:justify-start gap-2 mb-4">
-              <Sparkles className="w-6 h-6 text-blue-400" />
-              <span className="text-blue-400 font-medium">Hoş geldiniz</span>
+              <Rocket className="w-6 h-6 text-blue-400 animate-bounce" />
+              <span className="text-blue-400 font-medium">Welcome to my digital space</span>
+              <Sparkles className="w-4 h-4 text-purple-400 animate-pulse" />
             </div>
             
             <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold mb-6">
@@ -31,7 +51,7 @@ const Hero = () => {
             
             <div className="flex justify-center lg:justify-start space-x-6">
               <a 
-                href="https://twitter.com/mehmetkurdi" 
+                href={`https://twitter.com/${config.social.twitter}`}
                 className="group text-gray-400 hover:text-blue-400 transition-all duration-300 transform hover:scale-110 hover:-translate-y-1"
                 target="_blank"
                 rel="noopener noreferrer"
@@ -39,7 +59,7 @@ const Hero = () => {
                 <Twitter className="w-7 h-7 group-hover:drop-shadow-[0_0_15px_rgba(59,130,246,0.5)]" />
               </a>
               <a 
-                href="https://github.com/mehmetkurdi" 
+                href={`https://github.com/${config.social.github}`}
                 className="group text-gray-400 hover:text-purple-400 transition-all duration-300 transform hover:scale-110 hover:-translate-y-1"
                 target="_blank"
                 rel="noopener noreferrer"
@@ -47,7 +67,7 @@ const Hero = () => {
                 <Github className="w-7 h-7 group-hover:drop-shadow-[0_0_15px_rgba(168,85,247,0.5)]" />
               </a>
               <a 
-                href="https://linkedin.com/in/mehmetkurdi" 
+                href={`https://linkedin.com/in/${config.social.linkedin}`}
                 className="group text-gray-400 hover:text-cyan-400 transition-all duration-300 transform hover:scale-110 hover:-translate-y-1"
                 target="_blank"
                 rel="noopener noreferrer"
@@ -64,7 +84,7 @@ const Hero = () => {
               <div className="absolute inset-2 bg-gradient-to-tr from-purple-500/10 to-blue-400/10 rounded-full blur-lg animate-pulse" style={{ animationDelay: '1s' }}></div>
               
               {/* Main Avatar Container */}
-              <div className="relative w-full h-full rounded-full bg-gradient-to-br from-blue-400 via-purple-500 to-cyan-400 p-1 transform hover:scale-105 transition-all duration-300 hover:rotate-3">
+              <div className="relative w-full h-full rounded-full bg-gradient-to-br from-blue-400 via-purple-500 to-cyan-400 p-1 transform hover:scale-105 transition-all duration-300 hover:rotate-3 cursor-pointer">
                 <div className="w-full h-full rounded-full bg-gray-900 flex items-center justify-center relative overflow-hidden">
                   {/* Background Pattern */}
                   <div className="absolute inset-0 bg-gradient-to-br from-gray-800 to-gray-900"></div>

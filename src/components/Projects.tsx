@@ -2,58 +2,32 @@
 import { useTranslations } from '@/hooks/useTranslations';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
-import { Github, ExternalLink, Star, GitFork, Code, Globe, Zap } from 'lucide-react';
+import { Github, ExternalLink, Star, GitFork, Code, Globe, Zap, Rocket } from 'lucide-react';
 
 const Projects = () => {
-  const { t, language } = useTranslations();
+  const { t, config } = useTranslations();
 
-  const projects = [
-    {
-      title: "Portfolio Website",
-      description: {
-        tr: "Modern ve responsive kişisel portfolio sitesi",
-        ku: "Malpera portfolyoya kesane ya modern û responsive",
-        en: "Modern and responsive personal portfolio website"
-      },
-      icon: Globe,
-      color: "from-blue-500 to-cyan-500",
-      tags: ["React", "TypeScript", "Tailwind"],
-      github: "mehmetkurdi/portfolio",
-      demo: "#",
-      stars: 42,
-      forks: 12
-    },
-    {
-      title: "CLI Tools Collection",
-      description: {
-        tr: "Geliştirici verimliliğini artıran CLI araçları koleksiyonu",
-        ku: "Komeka amûrên CLI ku berhemdariya pêşdebiran zêde dike",
-        en: "A collection of CLI tools that boost developer productivity"
-      },
-      icon: Code,
-      color: "from-purple-500 to-pink-500",
-      tags: ["Go", "CLI", "DevTools"],
-      github: "mehmetkurdi/dev-tools",
-      demo: "#",
-      stars: 128,
-      forks: 23
-    },
-    {
-      title: "Web3 Payment Gateway",
-      description: {
-        tr: "Blockchain tabanlı ödeme sistemi",
-        ku: "Pergala dravdanê ya bingehê blockchain",
-        en: "Blockchain-based payment system"
-      },
-      icon: Zap,
-      color: "from-green-500 to-emerald-500",
-      tags: ["Web3", "Solidity", "React"],
-      github: "mehmetkurdi/web3-payments",
-      demo: "#",
-      stars: 89,
-      forks: 34
-    }
-  ];
+  const iconMap = {
+    Code,
+    Globe,
+    Zap,
+    Rocket
+  };
+
+  // In a real implementation, you would fetch from GitHub API
+  // For now, we'll use the featured projects from config
+  const projects = config.featuredProjects.map((project, index) => ({
+    ...project,
+    icon: Object.values(iconMap)[index % Object.values(iconMap).length],
+    color: [
+      "from-blue-500 to-cyan-500",
+      "from-purple-500 to-pink-500", 
+      "from-green-500 to-emerald-500"
+    ][index % 3],
+    github: `${config.social.github}/${project.title.toLowerCase().replace(/\s+/g, '-')}`,
+    stars: Math.floor(Math.random() * 200) + 10,
+    forks: Math.floor(Math.random() * 50) + 5
+  }));
 
   return (
     <section id="projects" className="px-4 sm:px-8 py-16 lg:py-24">
@@ -70,7 +44,7 @@ const Projects = () => {
             return (
               <Card 
                 key={index} 
-                className="bg-gray-900/50 border-gray-700 hover:border-gray-600 transition-all duration-300 hover:shadow-xl hover:shadow-blue-500/10 hover:scale-105 backdrop-blur-sm group"
+                className="bg-gray-900/50 border-gray-700 hover:border-gray-600 transition-all duration-300 hover:shadow-xl hover:shadow-blue-500/10 hover:scale-105 backdrop-blur-sm group cursor-pointer"
               >
                 <CardHeader>
                   <div className="flex items-center justify-between mb-4">
@@ -87,7 +61,7 @@ const Projects = () => {
                         <Github className="w-5 h-5" />
                       </a>
                       <a 
-                        href={project.demo}
+                        href={project.demoUrl}
                         className="p-2 text-gray-400 hover:text-white transition-colors duration-300 hover:bg-gray-800 rounded-lg transform hover:scale-110"
                         target="_blank"
                         rel="noopener noreferrer"
@@ -100,18 +74,18 @@ const Projects = () => {
                     {project.title}
                   </CardTitle>
                   <CardDescription className="text-gray-400">
-                    {project.description[language]}
+                    {project.description}
                   </CardDescription>
                 </CardHeader>
                 <CardContent>
                   <div className="flex flex-wrap gap-2 mb-4">
-                    {project.tags.map((tag, tagIndex) => (
+                    {project.technologies.map((tech, techIndex) => (
                       <Badge 
-                        key={tagIndex} 
+                        key={techIndex} 
                         variant="secondary" 
                         className="bg-gray-800/80 text-gray-300 hover:bg-gray-700 transition-colors"
                       >
-                        {tag}
+                        {tech}
                       </Badge>
                     ))}
                   </div>
@@ -133,7 +107,7 @@ const Projects = () => {
         
         <div className="text-center">
           <a 
-            href="https://github.com/mehmetkurdi" 
+            href={`https://github.com/${config.social.github}`}
             className="inline-flex items-center space-x-2 text-lg bg-gradient-to-r from-blue-400 to-purple-500 bg-clip-text text-transparent hover:from-purple-500 hover:to-cyan-400 transition-all duration-300 group"
             target="_blank"
             rel="noopener noreferrer"

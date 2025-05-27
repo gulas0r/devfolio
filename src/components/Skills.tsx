@@ -4,46 +4,18 @@ import { Badge } from '@/components/ui/badge';
 import { Code, Database, Smartphone, Cloud, Wrench, Terminal, Globe, Cpu } from 'lucide-react';
 
 const Skills = () => {
-  const { t } = useTranslations();
+  const { t, config } = useTranslations();
 
-  const skillCategories = [
-    {
-      category: "Frontend",
-      skills: ["React", "TypeScript", "Next.js", "Tailwind CSS", "Vue.js", "HTML5", "CSS3"],
-      icon: Code,
-      color: "from-blue-500 to-cyan-500"
-    },
-    {
-      category: "Backend",
-      skills: ["Node.js", "Go", "Python", "Express.js", "PostgreSQL", "MongoDB", "Redis"],
-      icon: Database,
-      color: "from-green-500 to-emerald-500"
-    },
-    {
-      category: "Web3 & Blockchain",
-      skills: ["Solidity", "Ethereum", "Web3.js", "Hardhat", "IPFS", "MetaMask"],
-      icon: Cpu,
-      color: "from-purple-500 to-pink-500"
-    },
-    {
-      category: "DevOps & Tools",
-      skills: ["Docker", "Git", "Linux", "AWS", "Vercel", "GitHub Actions"],
-      icon: Cloud,
-      color: "from-orange-500 to-red-500"
-    },
-    {
-      category: "Mobile",
-      skills: ["React Native", "Flutter", "iOS", "Android"],
-      icon: Smartphone,
-      color: "from-indigo-500 to-purple-500"
-    },
-    {
-      category: "Development Tools",
-      skills: ["VS Code", "Terminal", "Postman", "Figma", "Webpack", "Vite"],
-      icon: Terminal,
-      color: "from-gray-500 to-slate-500"
-    }
-  ];
+  const iconMap = {
+    Code,
+    Database,
+    Smartphone,
+    Cloud,
+    Wrench,
+    Terminal,
+    Globe,
+    Cpu
+  };
 
   return (
     <section id="skills" className="px-4 sm:px-8 py-16 lg:py-24">
@@ -55,8 +27,8 @@ const Skills = () => {
         </h2>
         
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 lg:gap-12">
-          {skillCategories.map((category, index) => {
-            const IconComponent = category.icon;
+          {config.skills.map((category, index) => {
+            const IconComponent = iconMap[category.icon as keyof typeof iconMap] || Code;
             return (
               <div key={index} className="group">
                 <div className="flex items-center space-x-4 mb-6">

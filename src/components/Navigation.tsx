@@ -2,7 +2,7 @@
 import { useTranslations } from '@/hooks/useTranslations';
 import { Menu, Home, FolderOpen, Award, Trophy, Mail, X } from 'lucide-react';
 import { useState } from 'react';
-import LanguageSwitcher from './LanguageSwitcher';
+import ThemeSwitcher from './LanguageSwitcher';
 
 const Navigation = () => {
   const { getNavItems } = useTranslations();
@@ -63,7 +63,7 @@ const Navigation = () => {
             )}
           </button>
 
-          <LanguageSwitcher />
+          <ThemeSwitcher />
         </div>
 
         {/* Mobile Navigation Menu */}
