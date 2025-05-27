@@ -18,31 +18,31 @@ export const portfolioConfig = {
   // Skills Configuration
   skills: [
     {
-      category: "Frontend",
-      skills: ["React", "TypeScript", "Next.js", "Tailwind CSS", "Vue.js", "HTML5", "CSS3"],
+      category: "Frontend Development",
+      skills: ["React", "TypeScript", "Next.js", "Tailwind CSS", "Vue.js", "JavaScript"],
       icon: "Code",
       color: "from-blue-500 to-cyan-500"
     },
     {
-      category: "Backend",
-      skills: ["Node.js", "Go", "Python", "Express.js", "PostgreSQL", "MongoDB", "Redis"],
+      category: "Backend Development",
+      skills: ["Node.js", "Go", "Python", "Express.js", "PostgreSQL", "MongoDB"],
       icon: "Database",
       color: "from-green-500 to-emerald-500"
     },
     {
       category: "Web3 & Blockchain",
       skills: ["Solidity", "Ethereum", "Web3.js", "Hardhat", "IPFS", "MetaMask"],
-      icon: "Cpu",
+      icon: "Terminal",
       color: "from-purple-500 to-pink-500"
     },
     {
-      category: "DevOps & Tools",
+      category: "DevOps & Cloud",
       skills: ["Docker", "Git", "Linux", "AWS", "Vercel", "GitHub Actions"],
       icon: "Cloud",
       color: "from-orange-500 to-red-500"
     },
     {
-      category: "Mobile",
+      category: "Mobile Development",
       skills: ["React Native", "Flutter", "iOS", "Android"],
       icon: "Smartphone",
       color: "from-indigo-500 to-purple-500"
@@ -50,7 +50,7 @@ export const portfolioConfig = {
     {
       category: "Development Tools",
       skills: ["VS Code", "Terminal", "Postman", "Figma", "Webpack", "Vite"],
-      icon: "Terminal",
+      icon: "Globe",
       color: "from-gray-500 to-slate-500"
     }
   ],
