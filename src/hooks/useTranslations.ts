@@ -1,5 +1,5 @@
 
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 
 export type Language = 'tr' | 'ku' | 'en';
 
@@ -28,9 +28,9 @@ const translations: Translations = {
     en: "I am a fullstack software developer, currently focusing on learning new technologies (React, Go, Web and backend technologies). Whenever I feel like I should share my knowledge with others, I like to do it via blog posts and social media."
   },
   navigation: {
-    tr: "Anasayfa,Blog,Projeler,Başarılar,Konuk Defteri",
-    ku: "Malper,Blog,Proje,Serkeftin,Pirtûka Mêvan",
-    en: "Home,Blog,Projects,Achievements,Guestbook"
+    tr: "Anasayfa,Projeler,Yetenekler,Başarılar,İletişim",
+    ku: "Malper,Proje,Jêhatî,Serkeftin,Têkilî",
+    en: "Home,Projects,Skills,Achievements,Contact"
   },
   projects: {
     tr: "Projeler",
@@ -42,10 +42,10 @@ const translations: Translations = {
     ku: "Jêhatî",
     en: "Skills"
   },
-  blogPosts: {
-    tr: "Blog Yazıları",
-    ku: "Postên Blogê",
-    en: "Blog Posts"
+  achievements: {
+    tr: "Başarılar",
+    ku: "Serkeftin",
+    en: "Achievements"
   },
   contact: {
     tr: "İletişim",
@@ -53,14 +53,9 @@ const translations: Translations = {
     en: "Contact"
   },
   viewAllProjects: {
-    tr: "Tüm Projeleri Görüntüle",
-    ku: "Hemû Projeyan Bibîne",
-    en: "View All Projects"
-  },
-  viewAllBlogPosts: {
-    tr: "Tüm Blog Yazılarını Görüntüle",
-    ku: "Hemû Postên Blogê Bibîne",
-    en: "View All Blog Posts"
+    tr: "GitHub'da Tüm Projeler",
+    ku: "Hemû Proje li GitHub",
+    en: "All Projects on GitHub"
   },
   contactDescription: {
     tr: "Benimle e-posta yoluyla iletişime geçebilirsiniz:",
@@ -76,11 +71,23 @@ const translations: Translations = {
     tr: "Tarafından yapıldı",
     ku: "Ji aliyê ve hatiye çêkirin",
     en: "Made by"
+  },
+  githubProjects: {
+    tr: "GitHub Projelerim",
+    ku: "Projeyên Min ên GitHub",
+    en: "My GitHub Projects"
   }
 };
 
 export const useTranslations = () => {
-  const [language, setLanguage] = useState<Language>('tr');
+  const [language, setLanguage] = useState<Language>(() => {
+    const savedLanguage = localStorage.getItem('preferred-language') as Language;
+    return savedLanguage || 'tr';
+  });
+
+  useEffect(() => {
+    localStorage.setItem('preferred-language', language);
+  }, [language]);
 
   const t = (key: string): string => {
     return translations[key]?.[language] || key;
@@ -90,9 +97,13 @@ export const useTranslations = () => {
     return t('navigation').split(',');
   };
 
+  const changeLanguage = (newLanguage: Language) => {
+    setLanguage(newLanguage);
+  };
+
   return {
     language,
-    setLanguage,
+    setLanguage: changeLanguage,
     t,
     getNavItems
   };

@@ -2,71 +2,114 @@
 import { useTranslations } from '@/hooks/useTranslations';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
+import { Github, ExternalLink, Star, GitFork } from 'lucide-react';
 
 const Projects = () => {
   const { t, language } = useTranslations();
 
   const projects = [
     {
-      title: "NotifyHub",
+      title: "Portfolio Website",
       description: {
-        tr: "Uygulamanızdan etkinlikler hakkında gerçek zamanlı bildirimler alın",
-        ku: "Ji sepana xwe ya bûyeran agahdariyên demê rast bistînin",
-        en: "Get realtime notifications on events from your application"
+        tr: "Modern ve responsive kişisel portfolio sitesi",
+        ku: "Malpera portfolyoya kesane ya modern û responsive",
+        en: "Modern and responsive personal portfolio website"
       },
-      icon: "N",
-      color: "bg-blue-600",
-      tags: ["React", "Node.js", "WebSocket"]
+      icon: "🌐",
+      color: "from-cyan-400 to-blue-500",
+      tags: ["React", "TypeScript", "Tailwind"],
+      github: "mehmetkurdi/portfolio",
+      demo: "#",
+      stars: 42,
+      forks: 12
     },
     {
-      title: "CryptoPay",
+      title: "CLI Tools Collection",
       description: {
-        tr: "QR kodları ile fiziksel mağazalarınızda kripto para ödemelerini kabul edin",
-        ku: "Di dikanên fizîkî de bi kodên QR re dravên kriptoyê bipejirînin",
-        en: "Accept payments in crypto at your physical stores with QR codes"
+        tr: "Geliştirici verimliliğini artıran CLI araçları koleksiyonu",
+        ku: "Komeka amûrên CLI ku berhemdariya pêşdebiran zêde dike",
+        en: "A collection of CLI tools that boost developer productivity"
       },
-      icon: "C",
-      color: "bg-purple-600",
-      tags: ["Web3", "Blockchain", "React"]
+      icon: "⚡",
+      color: "from-purple-400 to-pink-500",
+      tags: ["Go", "CLI", "DevTools"],
+      github: "mehmetkurdi/dev-tools",
+      demo: "#",
+      stars: 128,
+      forks: 23
     },
     {
-      title: "DevTools CLI",
+      title: "Web3 Payment Gateway",
       description: {
-        tr: "Geliştirici verimliliğini artıran modern CLI araçları koleksiyonu",
-        ku: "Komeka amûrên CLI yên modern ku berhemdariya pêşdebiran zêde dike",
-        en: "A collection of modern CLI tools that boost developer productivity"
+        tr: "Blockchain tabanlı ödeme sistemi",
+        ku: "Pergala dravdanê ya bingehê blockchain",
+        en: "Blockchain-based payment system"
       },
-      icon: "D",
-      color: "bg-green-600",
-      tags: ["Go", "CLI", "DevTools"]
+      icon: "💎",
+      color: "from-green-400 to-emerald-500",
+      tags: ["Web3", "Solidity", "React"],
+      github: "mehmetkurdi/web3-payments",
+      demo: "#",
+      stars: 89,
+      forks: 34
     }
   ];
 
   return (
-    <section className="px-8 py-16">
-      <h2 className="text-3xl font-bold text-white mb-8">{t('projects')}</h2>
+    <section id="projects" className="px-8 py-16">
+      <h2 className="text-4xl font-bold text-white mb-12 text-center">
+        <span className="bg-gradient-to-r from-cyan-400 via-purple-500 to-pink-500 bg-clip-text text-transparent">
+          {t('projects')}
+        </span>
+      </h2>
       
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-8">
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-12">
         {projects.map((project, index) => (
-          <Card key={index} className="bg-gray-900 border-gray-800 hover:border-gray-700 transition-colors">
+          <Card key={index} className="bg-gray-900/50 border-gray-700 hover:border-gray-600 transition-all duration-300 hover:shadow-2xl hover:shadow-purple-500/20 hover:scale-105 backdrop-blur-sm group">
             <CardHeader>
-              <div className="flex items-center gap-3 mb-2">
-                <div className={`w-10 h-10 rounded-lg ${project.color} flex items-center justify-center text-white font-bold`}>
+              <div className="flex items-center justify-between mb-4">
+                <div className={`text-3xl p-3 rounded-lg bg-gradient-to-r ${project.color}`}>
                   {project.icon}
                 </div>
-                <CardTitle className="text-white">{project.title}</CardTitle>
+                <div className="flex space-x-2">
+                  <a 
+                    href={`https://github.com/${project.github}`}
+                    className="p-2 text-gray-400 hover:text-white transition-colors duration-300 hover:bg-gray-800 rounded-lg"
+                  >
+                    <Github className="w-5 h-5" />
+                  </a>
+                  <a 
+                    href={project.demo}
+                    className="p-2 text-gray-400 hover:text-white transition-colors duration-300 hover:bg-gray-800 rounded-lg"
+                  >
+                    <ExternalLink className="w-5 h-5" />
+                  </a>
+                </div>
               </div>
+              <CardTitle className={`text-xl bg-gradient-to-r ${project.color} bg-clip-text text-transparent`}>
+                {project.title}
+              </CardTitle>
               <CardDescription className="text-gray-400">
                 {project.description[language]}
               </CardDescription>
             </CardHeader>
             <CardContent>
-              <div className="flex flex-wrap gap-2">
+              <div className="flex flex-wrap gap-2 mb-4">
                 {project.tags.map((tag, tagIndex) => (
-                  <Badge key={tagIndex} variant="secondary" className="bg-gray-800 text-gray-300">
+                  <Badge key={tagIndex} variant="secondary" className="bg-gray-800/80 text-gray-300 hover:bg-gray-700 transition-colors">
                     {tag}
                   </Badge>
                 ))}
+              </div>
+              <div className="flex items-center space-x-4 text-sm text-gray-500">
+                <div className="flex items-center space-x-1">
+                  <Star className="w-4 h-4" />
+                  <span>{project.stars}</span>
+                </div>
+                <div className="flex items-center space-x-1">
+                  <GitFork className="w-4 h-4" />
+                  <span>{project.forks}</span>
+                </div>
               </div>
             </CardContent>
           </Card>
@@ -74,8 +117,12 @@ const Projects = () => {
       </div>
       
       <div className="text-center">
-        <a href="#" className="text-blue-400 hover:text-blue-300 transition-colors">
-          {t('viewAllProjects')} →
+        <a 
+          href="https://github.com/mehmetkurdi" 
+          className="inline-flex items-center space-x-2 text-lg bg-gradient-to-r from-cyan-400 to-purple-500 bg-clip-text text-transparent hover:from-purple-500 hover:to-pink-500 transition-all duration-300 group"
+        >
+          <Github className="w-5 h-5 text-cyan-400 group-hover:text-purple-500 transition-colors duration-300" />
+          <span>{t('viewAllProjects')} →</span>
         </a>
       </div>
     </section>
