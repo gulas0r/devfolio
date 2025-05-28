@@ -1,18 +1,18 @@
 
 export const portfolioConfig = {
   // Personal Information
-  name: "John Doe",
+  name: "Gula Sor",
   title: "Software Developer • Fullstack • Web3 Enthusiast • Tech Explorer",
   description: "I'm a passionate fullstack developer who loves building amazing web applications and exploring cutting-edge technologies. When I'm not coding, you'll find me contributing to open source projects and sharing knowledge with the developer community.",
   
   // Contact Information
-  email: "contact@johndoe.dev",
+  email: "gulekesorim@gmail.com",
   
   // Social Media Links
   social: {
-    github: "johndoe",
-    twitter: "johndoe",
-    linkedin: "johndoe"
+    github: "gulas0r",
+    twitter: "gulaasorr",
+    linkedin: ""
   },
   
   // Skills Configuration
@@ -98,23 +98,16 @@ export const portfolioConfig = {
   // Featured Projects (these will be supplemented by GitHub API)
   featuredProjects: [
     {
-      title: "AI-Powered Task Manager",
-      description: "Smart task management app with AI categorization and priority suggestions",
-      technologies: ["React", "TypeScript", "OpenAI", "Supabase"],
+      title: "devfolio",
+      description: "a modern developer portfolio",
+      technologies: ["React", "TypeScript"],
       demoUrl: "https://example.com",
       featured: true
     },
     {
-      title: "Crypto Portfolio Tracker",
-      description: "Real-time cryptocurrency portfolio tracking with DeFi integration",
-      technologies: ["Next.js", "Web3.js", "Chart.js", "TailwindCSS"],
-      demoUrl: "https://example.com",
-      featured: true
-    },
-    {
-      title: "Developer CLI Toolkit",
-      description: "Collection of CLI tools to boost developer productivity",
-      technologies: ["Go", "CLI", "Git", "Docker"],
+      title: "newify",
+      description: "a fun app for spotify stats.",
+      technologies: ["typescript", "react"],
       demoUrl: "https://example.com",
       featured: true
     }
