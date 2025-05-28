@@ -7,7 +7,6 @@ A stunning, responsive, and highly customizable developer portfolio built with R
 
 ## ✨ Features
 
-- 🎨 **Multiple Color Themes** - Switch between Cosmic, Neon, Aurora, and Midnight themes
 - 📱 **Fully Responsive** - Looks perfect on all devices
 - 🎭 **Smooth Animations** - Beautiful transitions and hover effects
 - 🔗 **GitHub Integration** - Automatically fetches your repositories
