@@ -7,23 +7,16 @@ import {
   faMobile, 
   faCloud, 
   faTerminal, 
-  faGlobe,
+  faGlobe 
+} from '@fortawesome/free-solid-svg-icons';
+import { 
   faReact,
   faNodeJs,
   faDocker,
   faGitAlt,
   faAws,
   faAndroid,
-  faApple
-} from '@fortawesome/free-solid-svg-icons';
-import { 
-  faReact as faBrandsReact,
-  faNodeJs as faBrandsNodeJs,
-  faDocker as faBrandsDocker,
-  faGitAlt as faBrandsGitAlt,
-  faAws as faBrandsAws,
-  faAndroid as faBrandsAndroid,
-  faApple as faBrandsApple,
+  faApple,
   faPython,
   faJs,
   faHtml5,
@@ -47,9 +40,9 @@ const Skills = () => {
   // Technology-specific Font Awesome icons mapping
   const techIconsFA: { [key: string]: any } = {
     // Frontend
-    'React': faBrandsReact,
+    'React': faReact,
     'TypeScript': faJs,
-    'Next.js': faBrandsReact,
+    'Next.js': faReact,
     'Tailwind CSS': faCss3Alt,
     'Vue.js': faVuejs,
     'HTML5': faHtml5,
@@ -57,10 +50,10 @@ const Skills = () => {
     'JavaScript': faJs,
     
     // Backend
-    'Node.js': faBrandsNodeJs,
+    'Node.js': faNodeJs,
     'Go': faCode,
     'Python': faPython,
-    'Express.js': faBrandsNodeJs,
+    'Express.js': faNodeJs,
     'PostgreSQL': faDatabase,
     'MongoDB': faDatabase,
     'Redis': faDatabase,
@@ -75,19 +68,19 @@ const Skills = () => {
     'MetaMask': faCode,
     
     // DevOps & Cloud
-    'Docker': faBrandsDocker,
-    'Git': faBrandsGitAlt,
+    'Docker': faDocker,
+    'Git': faGitAlt,
     'Linux': faTerminal,
-    'AWS': faBrandsAws,
+    'AWS': faAws,
     'Vercel': faCloud,
-    'GitHub Actions': faBrandsGitAlt,
+    'GitHub Actions': faGitAlt,
     'Kubernetes': faCloud,
     
     // Mobile
-    'React Native': faBrandsReact,
+    'React Native': faReact,
     'Flutter': faMobile,
-    'iOS': faBrandsApple,
-    'Android': faBrandsAndroid,
+    'iOS': faApple,
+    'Android': faAndroid,
     
     // Tools
     'VS Code': faCode,
