@@ -9,7 +9,7 @@ const Footer = () => {
     <footer className="px-8 py-16 border-t border-gray-800">
       <div className="text-center space-y-4">
         <p className="text-gray-400">
-          {t('madeBy')} <span className="text-blue-400">Mehmet Kurdi</span>
+          {t('madeBy')} <span className="text-blue-400">Gula Sor🌹</span>
         </p>
         
         <div className="flex items-center justify-center space-x-2 text-gray-400">
