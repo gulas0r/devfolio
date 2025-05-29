@@ -1,6 +1,7 @@
 
 import { Music, Play, Pause } from 'lucide-react';
 import { useState, useEffect } from 'react';
+import { getMockCurrentlyPlaying } from '@/services/spotifyApi';
 
 interface SpotifyTrack {
   name: string;
@@ -13,19 +14,20 @@ const SpotifyStatus = () => {
   const [currentTrack, setCurrentTrack] = useState<SpotifyTrack | null>(null);
   const [isLoading, setIsLoading] = useState(true);
 
-  // Demo data - gerçek Spotify API entegrasyonu için bu kısım güncellenecek
   useEffect(() => {
-    // Simulate loading
-    const timer = setTimeout(() => {
-      setCurrentTrack({
-        name: "Bohemian Rhapsody",
-        artist: "Queen",
-        isPlaying: true
-      });
+    const loadSpotifyData = () => {
+      // Mock data kullanıyoruz - gerçek Spotify entegrasyonu için OAuth gerekli
+      const track = getMockCurrentlyPlaying();
+      setCurrentTrack(track);
       setIsLoading(false);
-    }, 1000);
+    };
 
-    return () => clearTimeout(timer);
+    loadSpotifyData();
+    
+    // Her 30 saniyede bir güncelle
+    const interval = setInterval(loadSpotifyData, 30000);
+    
+    return () => clearInterval(interval);
   }, []);
 
   if (isLoading) {

@@ -1,6 +1,8 @@
 
 import { Github, GitCommit, Star } from 'lucide-react';
 import { useState, useEffect } from 'react';
+import { fetchGitHubStats } from '@/services/githubApi';
+import { portfolioConfig } from '@/config/portfolio';
 
 interface GitHubStats {
   username: string;
@@ -13,21 +15,23 @@ interface GitHubStats {
 const GitHubStatus = () => {
   const [stats, setStats] = useState<GitHubStats | null>(null);
   const [isLoading, setIsLoading] = useState(true);
+  const [error, setError] = useState<string | null>(null);
 
   useEffect(() => {
-    // Demo data - gerçek GitHub API entegrasyonu için bu kısım güncellenecek
-    const timer = setTimeout(() => {
-      setStats({
-        username: "gulas0r",
-        totalRepos: 15,
-        totalStars: 42,
-        lastCommit: "2 hours ago",
-        isActive: true
-      });
-      setIsLoading(false);
-    }, 1200);
+    const loadGitHubStats = async () => {
+      try {
+        const githubStats = await fetchGitHubStats(portfolioConfig.social.github);
+        setStats(githubStats);
+        setError(null);
+      } catch (err) {
+        setError('GitHub verileri alınamadı');
+        console.error('GitHub API error:', err);
+      } finally {
+        setIsLoading(false);
+      }
+    };
 
-    return () => clearTimeout(timer);
+    loadGitHubStats();
   }, []);
 
   if (isLoading) {
@@ -39,7 +43,7 @@ const GitHubStatus = () => {
     );
   }
 
-  if (!stats) {
+  if (error || !stats) {
     return (
       <div className="flex items-center space-x-2 bg-[#2a2a3a] rounded-lg px-3 py-2">
         <Github className="w-4 h-4 text-gray-500" />
