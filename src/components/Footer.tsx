@@ -14,7 +14,7 @@ const Footer = () => {
         
         <div className="flex items-center justify-center space-x-2 text-gray-400">
           <span>{t('footer')}</span>
-          <a href="#" className="text-blue-400 hover:text-blue-300 transition-colors inline-flex items-center space-x-1">
+          <a href="https://github.com/gulas0r/devfolio/" className="text-blue-400 hover:text-blue-300 transition-colors inline-flex items-center space-x-1">
             <Github size={16} />
             <span>GitHub →</span>
           </a>
