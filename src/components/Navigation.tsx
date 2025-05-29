@@ -1,14 +1,16 @@
 
 import { useTranslations } from '@/hooks/useTranslations';
-import { Menu, X } from 'lucide-react';
+import { Menu, X, Music, Github } from 'lucide-react';
 import { useState } from 'react';
+import SpotifyStatus from './SpotifyStatus';
+import GitHubStatus from './GitHubStatus';
 
 const Navigation = () => {
   const { getNavItems } = useTranslations();
-  const navItems = ['About', 'Resume', 'Portfolio', 'Blog', 'Contact'];
+  const navItems = ['About', 'Skills', 'Projects', 'Contact'];
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   
-  const navSections = ['about', 'resume', 'projects', 'blog', 'contact'];
+  const navSections = ['about', 'skills', 'projects', 'contact'];
 
   const scrollToSection = (sectionId: string) => {
     setIsMobileMenuOpen(false);
@@ -26,11 +28,16 @@ const Navigation = () => {
   };
 
   return (
-    <nav className="fixed top-0 left-0 right-0 z-50 bg-[#1e1e28]/95 backdrop-blur-sm">
+    <nav className="fixed top-0 left-0 right-0 z-50 bg-[#1e1e28]/95 backdrop-blur-sm border-b border-gray-800">
       <div className="max-w-7xl mx-auto px-4 sm:px-8">
         <div className="flex justify-between items-center py-4">
+          {/* Logo/Brand */}
+          <div className="text-xl font-bold text-white">
+            Gula<span className="text-orange-400">Sor</span>
+          </div>
+
           {/* Desktop Navigation */}
-          <div className="hidden md:flex space-x-8 ml-auto">
+          <div className="hidden md:flex items-center space-x-8">
             {navItems.map((item, index) => (
               <button
                 key={index}
@@ -42,17 +49,26 @@ const Navigation = () => {
             ))}
           </div>
 
-          {/* Mobile Menu Button */}
-          <button
-            onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-            className="md:hidden text-gray-300 hover:text-white transition-colors duration-300 ml-auto"
-          >
-            {isMobileMenuOpen ? (
-              <X className="w-6 h-6" />
-            ) : (
-              <Menu className="w-6 h-6" />
-            )}
-          </button>
+          {/* Status Indicators & Mobile Menu */}
+          <div className="flex items-center space-x-4">
+            {/* Desktop Status Indicators */}
+            <div className="hidden lg:flex items-center space-x-4">
+              <SpotifyStatus />
+              <GitHubStatus />
+            </div>
+
+            {/* Mobile Menu Button */}
+            <button
+              onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+              className="md:hidden text-gray-300 hover:text-white transition-colors duration-300"
+            >
+              {isMobileMenuOpen ? (
+                <X className="w-6 h-6" />
+              ) : (
+                <Menu className="w-6 h-6" />
+              )}
+            </button>
+          </div>
         </div>
 
         {/* Mobile Navigation Menu */}
@@ -68,6 +84,12 @@ const Navigation = () => {
                   {item}
                 </button>
               ))}
+              
+              {/* Mobile Status Indicators */}
+              <div className="pt-4 border-t border-gray-700 space-y-3">
+                <SpotifyStatus />
+                <GitHubStatus />
+              </div>
             </div>
           </div>
         )}
