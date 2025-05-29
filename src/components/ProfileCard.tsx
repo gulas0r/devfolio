@@ -1,6 +1,7 @@
 
 import { useTranslations } from '@/hooks/useTranslations';
 import { Mail, Phone, MapPin, Calendar, Github, Twitter, Linkedin } from 'lucide-react';
+import { Avatar, AvatarImage, AvatarFallback } from '@/components/ui/avatar';
 
 const ProfileCard = () => {
   const { config } = useTranslations();
@@ -9,8 +10,17 @@ const ProfileCard = () => {
     <div className="bg-[#1e1e28] rounded-xl p-8">
       {/* Profil Fotoğrafı */}
       <div className="text-center mb-8">
-        <div className="w-32 h-32 mx-auto mb-6 bg-gradient-to-br from-orange-400 to-orange-600 rounded-2xl flex items-center justify-center">
-          <span className="text-4xl">👨‍💻</span>
+        <div className="w-32 h-32 mx-auto mb-6">
+          <Avatar className="w-full h-full">
+            <AvatarImage 
+              src="https://avatars.githubusercontent.com/u/195791367" 
+              alt={config.name}
+              className="object-cover"
+            />
+            <AvatarFallback className="bg-gradient-to-br from-orange-400 to-orange-600 text-4xl">
+              👨‍💻
+            </AvatarFallback>
+          </Avatar>
         </div>
         <h1 className="text-2xl font-bold text-white mb-2">{config.name}</h1>
         <p className="text-gray-400 text-sm">Web Developer</p>
