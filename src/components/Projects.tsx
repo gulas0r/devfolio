@@ -2,7 +2,7 @@
 import { useTranslations } from '@/hooks/useTranslations';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
-import { Github, ExternalLink, Star, GitFork, Code, Globe, Zap, Rocket } from 'lucide-react';
+import { Github, ExternalLink, Code, Globe, Zap, Rocket } from 'lucide-react';
 import { useState, useEffect } from 'react';
 import { fetchGitHubRepos } from '@/services/githubApi';
 import { portfolioConfig } from '@/config/portfolio';
@@ -36,8 +36,6 @@ const Projects = () => {
           technologies: repo.topics.length > 0 ? repo.topics : [repo.language].filter(Boolean),
           demoUrl: repo.homepage || repo.html_url,
           github: repo.html_url,
-          stars: repo.stargazers_count,
-          forks: repo.forks_count,
           icon: Object.values(iconMap)[index % Object.values(iconMap).length],
           color: [
             "from-blue-500 to-cyan-500",
@@ -61,9 +59,7 @@ const Projects = () => {
             "from-purple-500 to-pink-500", 
             "from-green-500 to-emerald-500"
           ][index % 3],
-          github: `${config.social.github}/${project.title.toLowerCase().replace(/\s+/g, '-')}`,
-          stars: Math.floor(Math.random() * 200) + 10,
-          forks: Math.floor(Math.random() * 50) + 5
+          github: `${config.social.github}/${project.title.toLowerCase().replace(/\s+/g, '-')}`
         }));
         setRealProjects(fallbackProjects);
       } finally {
@@ -140,7 +136,7 @@ const Projects = () => {
                   </CardDescription>
                 </CardHeader>
                 <CardContent>
-                  <div className="flex flex-wrap gap-2 mb-4">
+                  <div className="flex flex-wrap gap-2">
                     {project.technologies.map((tech: string, techIndex: number) => (
                       <Badge 
                         key={techIndex} 
@@ -150,16 +146,6 @@ const Projects = () => {
                         {tech}
                       </Badge>
                     ))}
-                  </div>
-                  <div className="flex items-center space-x-4 text-sm text-gray-500">
-                    <div className="flex items-center space-x-1">
-                      <Star className="w-4 h-4" />
-                      <span>{project.stars}</span>
-                    </div>
-                    <div className="flex items-center space-x-1">
-                      <GitFork className="w-4 h-4" />
-                      <span>{project.forks}</span>
-                    </div>
                   </div>
                 </CardContent>
               </Card>

@@ -1,7 +1,7 @@
 
 import { useState, useEffect } from 'react';
 import { Button } from '@/components/ui/button';
-import { Palette, Sun, Moon, Sparkles, Zap } from 'lucide-react';
+import { Palette, Sun, Moon, Sparkles, Zap, Lightbulb } from 'lucide-react';
 
 const ThemeSwitcher = () => {
   const [theme, setTheme] = useState('cosmic');
@@ -34,6 +34,13 @@ const ThemeSwitcher = () => {
       icon: Moon, 
       colors: 'from-gray-600 via-blue-700 to-purple-800',
       emoji: '🌙'
+    },
+    { 
+      name: 'white', 
+      label: 'Light', 
+      icon: Lightbulb, 
+      colors: 'from-blue-500 via-indigo-500 to-purple-500',
+      emoji: '☀️'
     }
   ];
 
@@ -42,6 +49,15 @@ const ThemeSwitcher = () => {
     document.documentElement.style.setProperty('--theme-gradient', 
       themes.find(t => t.name === theme)?.colors || themes[0].colors
     );
+    
+    // White mode için body background değiştir
+    if (theme === 'white') {
+      document.body.style.background = '#ffffff';
+      document.body.style.color = '#1a1a1a';
+    } else {
+      document.body.style.background = '#0a0a0a';
+      document.body.style.color = '#ffffff';
+    }
   }, [theme]);
 
   const handleThemeChange = (themeName: string) => {

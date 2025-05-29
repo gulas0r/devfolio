@@ -1,9 +1,7 @@
 
 import { useTranslations } from '@/hooks/useTranslations';
-import { Menu, X, Music, Github } from 'lucide-react';
+import { Menu, X } from 'lucide-react';
 import { useState } from 'react';
-import SpotifyStatus from './SpotifyStatus';
-import GitHubStatus from './GitHubStatus';
 
 const Navigation = () => {
   const { getNavItems } = useTranslations();
@@ -49,15 +47,8 @@ const Navigation = () => {
             ))}
           </div>
 
-          {/* Status Indicators & Mobile Menu */}
-          <div className="flex items-center space-x-4">
-            {/* Desktop Status Indicators */}
-            <div className="hidden lg:flex items-center space-x-4">
-              <SpotifyStatus />
-              <GitHubStatus />
-            </div>
-
-            {/* Mobile Menu Button */}
+          {/* Mobile Menu Button */}
+          <div className="flex items-center">
             <button
               onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
               className="md:hidden text-gray-300 hover:text-white transition-colors duration-300"
@@ -84,12 +75,6 @@ const Navigation = () => {
                   {item}
                 </button>
               ))}
-              
-              {/* Mobile Status Indicators */}
-              <div className="pt-4 border-t border-gray-700 space-y-3">
-                <SpotifyStatus />
-                <GitHubStatus />
-              </div>
             </div>
           </div>
         )}
